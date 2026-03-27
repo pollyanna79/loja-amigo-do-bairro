@@ -45,7 +45,7 @@ const Checkout = ({ itensNoCarrinho, totalOriginal, usuario, setTela, setUltimoP
         id: i.id, 
         foto: i.foto_url || '', 
         nome: i.descricao,
-        qtd: i.qtd,
+        qtd: i.quantidade,
         precoUnitario: i.preco 
       }));
 
