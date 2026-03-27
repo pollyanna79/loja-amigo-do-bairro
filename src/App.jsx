@@ -36,12 +36,24 @@ function App() {
 
   // Carregar Estoque do Supabase
   useEffect(() => {
-    async function carregarDados() {
-      const { data, error } = await supabase.from('estoque_loja').select('*');
-      if (data) setEstoque(data);
+   async function carregarDados() {
+    const { data, error } = await supabase
+      .from('estoque_loja')
+      .select('*')
+      .order('descricao', { ascending: true }); // Opcional: mantém em ordem alfabética
+
+    if (error) {
+      console.error("Erro ao atualizar estoque:", error.message);
+    } else if (data) {
+      setEstoque(data);
     }
+  }
+
+  // Só dispara a busca se o usuário estiver na tela da loja
+  if (telaAtual === 'loja') {
     carregarDados();
-  }, []);
+  }
+}, [telaAtual]);
 
   const adicionarAoCarrinho = (p) => {
     const ex = carrinho.find(i => i.id === p.id);

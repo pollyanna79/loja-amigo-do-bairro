@@ -11,9 +11,9 @@ const Catalogo = ({ adicionarAoCarrinho }) => {
     async function buscar() {
       setCarregando(true);
       try {
-        let query = supabase.from('estoque').select('*');
+        let query = supabase.from('estoque_loja').select('*');
         if (categoriaAtiva !== 'Todos') {
-          query = query.eq('categoria', categoriaAtiva);
+          query = query.eq('secao', categoriaAtiva);
         }
         const { data, error } = await query;
         if (error) throw error;
@@ -64,8 +64,9 @@ const Catalogo = ({ adicionarAoCarrinho }) => {
             <button 
               onClick={() => adicionarAoCarrinho(item)}
               className="btn-comprar"
+              disabled={item.quantidade <= 0}
             >
-              Adicionar ao Carrinho
+              {item.quantidade > 0 ? 'Adicionar ao Carrinho' : 'Esgotado'}
             </button>
           </div>
         ))}
