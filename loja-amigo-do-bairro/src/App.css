@@ -1,0 +1,395 @@
+/* --- RESET E CORES GLOBAIS --- */
+:root {
+  --cor-primaria: #4caf50;
+  --cor-fundo: #f8f7f7;
+  --cor-card: #1a1a1a;
+  --cor-texto: #ffffff;
+  text-align: center;
+}
+* {
+  box-sizing: border-box; /* CRÍTICO: Impede que inputs cortem nas laterais */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  overflow-x: hidden; /* Evita barra de rolagem horizontal */
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+}
+
+/* --- BARRA DE TOPO (OFERTA) --- */
+.barra-topo {
+  background-color: #f3eded;
+  color: #141313;
+  text-align: center;
+  padding: 5px 0;
+  font-weight: bold;
+  font-size: 0.9rem;
+ 
+}
+
+.texto-oferta{
+  color: rgb(224, 13, 13);
+  
+}
+.texto-oferta span{
+  text-align: center;
+}
+
+.cronometro-gigante{
+  font-size: 1.5rem; /* Letras bem grandes */
+  color: #ffcc00;
+  text-shadow: 0 0 10px #ff4500;
+  animation: piscar-urgente 0.8s infinite secondary;
+}
+.icone-fogo-piscante {
+  width: 60px !important;  /* Aumenta o tamanho do ícone */
+  height: 60px !important;
+  filter: drop-shadow(0 0 10px #ff0000); /* Sombra vermelha inicial */
+  animation: fogo-mega-piscante 0.5s infinite alternate ease-in-out;
+  margin: 0 15px; /* Espaço lateral para não colar no número */
+}
+/* Animação que faz o fogo crescer e brilhar em vermelho intenso */
+@keyframes fogo-mega-piscante {
+  from {
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px #ff4500) brightness(1);
+    color: #ff4500;
+  }
+  to {
+    transform: scale(1.3); /* Faz o ícone "pular" */
+    filter: drop-shadow(0 0 25px #ff0000) brightness(1.5);
+    color: #ff0000; /* Muda para um vermelho mais vivo */
+  }
+}
+/* --- AJUSTE NO CRONÔMETRO PARA ACOMPANHAR O TAMANHO --- */
+.cronometro-gigante {
+  font-size: 4rem; /* Aumentei um pouco para equilibrar com o fogo novo */
+  color: #ffcc00;
+  font-family: 'Courier New', Courier, monospace;
+  text-shadow: 0 0 20px rgba(255, 69, 0, 0.7);
+  
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.barra-topo-urgente {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: #000; /* Fundo preto destaca o vermelho do fogo */
+  padding: 10px;
+  gap: 10px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 3px solid #ff4500;
+  background: linear-gradient(90deg, #ff4d4d, #ff9800);
+}
+@keyframes piscar-urgente {
+  0% { opacity: 1; color: #ffcc00; }
+  50% { opacity: 0.5; color: #ff0000; }
+  100% { opacity: 1; color: #ffcc00; }
+}
+
+/* Faz o fogo "pular" e brilhar */
+@keyframes pulsar-fogo {
+  from { transform: scale(1); filter: drop-shadow(0 0 2px #ff4500); }
+  to { transform: scale(1.3); filter: drop-shadow(0 0 15px #ff0000); }
+}
+/* --- HEADER ORGANIZADO --- */
+.header {
+  display: flex;
+  justify-content: space-between; /* Logo esquerda, Botões direita */
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #333;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--cor-primaria);
+}
+
+.container-botoes {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* --- BOTÕES --- */
+.btn-meus-pedidos {
+  background: #f3eded;
+  color: rgb(30, 27, 27);
+  border: 1px solid #20f515;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.85rem;
+  transition: 0.3s;
+}
+
+.btn-meus-pedidos:hover {
+  background: #0fd509;
+}
+
+
+.cart-button:hover {
+  background-color: #1d6417; /* Escurece o verde ao passar o mouse */
+  transform: scale(1.05);    /* Aumenta levemente o tamanho */
+}
+
+/* Ajuste para o ícone dentro do botão */
+.cart-button svg {
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+}
+
+/* Se estiver no celular, o botão diminui um pouco para não atrapalhar */
+@media (max-width: 600px) {
+.barra-topo-urgente {
+    flex-direction: column; /* Um abaixo do outro no celular */
+    padding: 15px 5px;
+  }
+  .texto-oferta {
+    font-size: 0.8rem;
+  }
+  .cronometro-gigante {
+    font-size: 1.2rem;
+  }
+}
+/* --- GRID E PRODUTOS (IMAGEM SEM CORTE) --- */
+.grid-produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+  padding: 30px 0;
+}
+
+.card-produto {
+  background-color: var(--cor-card);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #f3eeee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #e7d5d5;
+}
+
+.card-produto img {
+  width: 100%;
+  height: 280px; 
+  /* MUDANÇA AQUI: contain faz a imagem aparecer inteira */
+  object-fit: contain; 
+  background-color: #ded37d; /* Fundo preto preenche sobra se a imagem for fina */
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.card-produto h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  height: 40px; /* Alinha os títulos */
+  overflow: hidden;
+}
+
+.btn-primary {
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* --- RODAPÉ --- */
+.rodape {
+  background-color: #111;
+  padding: 40px 0 20px;
+  margin-top: 50px;
+  border-top: 2px solid var(--cor-primaria);
+}
+.rodape-conteudo {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.meus-pedidos:hover{
+  background-color: #1d6417;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #4caf50;
+}
+/* --- BOTÃO MEUS PEDIDOS (AJUSTADO PARA A ESQUERDA DO CARRINHO) --- */
+.meus-pedidos {
+  position: absolute; 
+  top: 20px;
+  right: 230px;    /* Aumentei aqui para ele ficar ao lado do carrinho */
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #e1ebe1;
+  color: #1e1d1d;
+  border: 2px solid #1d6417;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* --- BOTÃO DO CARRINHO (MANTIDO NA PONTA DIREITA) --- */
+.cart-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;     /* Colado na direita */
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+/* --- ESTILO PARA OS ITENS DENTRO DA TELA DO CARRINHO --- */
+.item-carrinho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #222; /* Fundo escuro para destacar o texto branco */
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border-left: 5px solid #4caf50;
+  color: white !important; /* Garante que a descrição apareça */
+}
+
+.preco-item {
+  color: #4caf50;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* --- RESPONSIVIDADE PARA CELULAR --- */
+@media (max-width: 850px) {
+  .meus-pedidos {
+    top: 10px;
+    right: 10px;    /* No celular, um fica em cima do outro ou podemos empilhar */
+    font-size: 0.8rem;
+    padding: 8px 15px;
+  }
+  .cart-button {
+    top: 60px;     /* No celular, o carrinho desce para não bater no outro botão */
+    right: 10px;
+    padding: 8px 15px;
+    font-size: 0.8rem;
+  }
+}
+/* Garante que na tela de login/cadastro os botões de navegação não atrapalhem */
+.auth-container {
+  padding-top: 80px; /* Dá espaço para não bater nos botões fixos do topo */
+}
+/* Formulário de Autenticação (Login/Cadastro) */
+.auth-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Começa do topo para permitir rolagem */
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: #000;
+  overflow-y: auto; /* Permite rolar se o formulário for grande */
+}
+
+.auth-form {
+  background-color: #1a1a1a;
+  padding:25px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px; /* Não deixa o form esticar demais no PC */
+  display: flex;
+  flex-direction: column; /* Informações uma abaixo da outra */
+  gap: 15px;
+  border: 1px solid #333;
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background-color: #222;
+  color: white;
+  font-size: 1rem;
+}
+
+.auth-form input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+.btn-primary:hover {
+  background-color: #45a049;
+}
+.btn-link {
+  background: none;
+  border: none;
+  color: #4caf50;
+  text-decoration: underline;
+  cursor: pointer;
+}
+/* Container de CPF e CEP */
+.row-input {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+/* Responsividade para Celulares Pequenos */
+@media (max-width: 480px) {
+  .auth-wrapper {
+    padding: 20px 15px;
+  }
+  
+  .auth-form {
+    padding: 20px;
+  }
+
+  .row-input {
+    flex-direction: column; /* No celular, CPF e CEP ficam um abaixo do outro */
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
